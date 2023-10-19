@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block title %}Home Page - Flask App{% endblock %}
+
+{% block content %}
+<div class="jumbotron text-center">
+    <h1 class="display-4">Welcome to the Flask App</h1>
+    <p class="lead">A simple Flask APP For Pokemon Fans.</p>
+    <hr class="my-4">
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" href="{{ url_for('login') }}" role="button">Login</a>
+        <a class="btn btn-success btn-lg" href="{{ url_for('signup') }}" role="button">Signup</a>
+    </p>
+</div>
+{% endblock %}

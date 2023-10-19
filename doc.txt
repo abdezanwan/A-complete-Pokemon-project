@@ -1,0 +1,21 @@
+flask db init
+flask db migrate
+flask db upgrade
+
+flask run
+
+---------------
+First search puts on db, second catch.
+
+
+-------------
+Edit profile
+
+Catch pokemon
+
+Pokemon List
+-----------
+
+Remove Pokemon.
+Users list.
+Attacking page.

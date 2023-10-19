@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block title %}Login - Flask App{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Edit Profile</h2>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.new_username.label(class="form-label") }}
+            {{ form.new_username(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.email.label(class="form-label") }}
+            {{ form.email(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            {{ form.new_password.label(class="form-label") }}
+            {{ form.new_password(class="form-control") }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+</div>
+{% endblock %}

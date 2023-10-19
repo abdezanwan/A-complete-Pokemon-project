@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+
+{% block title %}Fight Results - Flask App{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-4">Fight Results</h1>
+
+    <h2>Winner: {{ winner.username }}</h2>
+
+    <h3>Total HP Count : {{ current_user_hp_lost }}</h3>
+
+    <h3>Battle Results</h3>
+    <table class="table mt-4">
+        <thead>
+            <tr>
+                <th>Your Pokemon</th>
+                <th>Enemy Pokemon</th>
+                <th>Your Pokemon HP Lost</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for battle_result in battle_results %}
+            <tr>
+                <td>
+                    <img src="{{ battle_result.current_pokemon.front_shiny }}" alt="{{ battle_result.current_pokemon.name }} Shiny">
+                    <p>{{ battle_result.current_pokemon.name }}</p>
+                    <p>
+                        <span style="color: green; font-weight: bold;">Defense: {{ battle_result.current_pokemon.defense }}</span><br>
+                        <span style="color: red; font-weight: bold;">Attack: {{ battle_result.current_pokemon.attack }}</span><br>
+                        <span style="color: Blue; font-weight: bold;">HP: {{ battle_result.current_pokemon.hp }}</span>
+
+                    </p>
+                </td>
+                <td>
+                    <img src="{{ battle_result.target_pokemon.front_shiny }}" alt="{{ battle_result.target_pokemon.name }} Shiny">
+                    <p>{{ battle_result.target_pokemon.name }}</p>
+                    <p>
+                        <span style="color: green; font-weight: bold;">Defense: {{ battle_result.target_pokemon.defense }}</span><br>
+                        <span style="color: red; font-weight: bold;">Attack: {{ battle_result.target_pokemon.attack }}</span><br>
+                        <span style="color: Blue; font-weight: bold;">HP: {{ battle_result.target_pokemon.hp }}</span>
+                    </p>
+                </td>
+                <td > <span style="font-weight: bold;">{{ battle_result.current_hp_lost }} </span></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

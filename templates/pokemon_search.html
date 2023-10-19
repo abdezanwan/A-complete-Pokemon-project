@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+
+{% block title %}Login - Flask App{% endblock %}
+
+{% block content %}
+<body>
+    <div class="container">
+        <h1 class="mt-4">Pokemon Search</h1>
+
+        <form method="POST" class="mt-4">
+            <div class="form-group">
+                <label for="pokemon_name">Enter Pokemon Name:</label>
+                <input type="text" class="form-control" id="pokemon_name" name="pokemon_name" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+
+        {% if error_message %}
+        <div class="alert alert-danger mt-4">
+            {{ error_message }}
+        </div>
+        {% endif %}
+
+        {% if name %}
+        <div class="mt-4">
+            <h2>{{ name }}</h2>
+            <p>HP: {{ hp }}</p>
+            <p>Defense: {{ defense }}</p>
+            <p>Attack: {{ attack }}</p>
+            <img src="{{ front_shiny }}" alt="{{ name }} Shiny">
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Abilities:</h3>
+                <ul>
+                    {% for ability in abilities %}
+                        <li>{{ ability }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        
+        {% endif %}
+    </div>
+</body>
+{% endblock %}

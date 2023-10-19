@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+
+{% block title %}Hall of Fame - Flask App{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-4">Hall of Fame</h1>
+
+    {% if user_pokemon_sets %}
+    <table class="table mt-4">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Pokemon 1</th>
+                <th>Pokemon 2</th>
+                <th>Pokemon 3</th>
+                <th>Pokemon 4</th>
+                <th>Pokemon 5</th>
+                <th>Record (W-L-D)</th>
+                <th>Attack</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user, caught_pokemon in user_pokemon_sets.items() %}
+            <tr>
+                <td>{{ user.username }}</td>
+                {% for pokemon in caught_pokemon %}
+                <td>
+                    <strong>{{ pokemon.pokemon.name }}</strong><br>
+                    <img src="{{ pokemon.pokemon.front_shiny }}" alt="{{ pokemon.pokemon.name }} Shiny">
+                </td>
+                {% endfor %}
+                {% for _ in range(5 - caught_pokemon|length) %}
+                <td>N/A</td>
+                {% endfor %}
+                <td>{{ user.wins }} - {{ user.losses }} - {{ user.draws }}</td>
+                <td>
+                    {% if user != current_user %}
+                    <a href="{{ url_for('attack', target_user_id=user.id) }}" class="btn btn-danger mt-2">Attack</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p class="mt-4">No users have caught any Pokemon yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

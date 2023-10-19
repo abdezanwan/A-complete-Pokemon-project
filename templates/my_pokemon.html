@@ -1,0 +1,44 @@
+{% extends 'layout.html' %}
+
+{% block title %}My Pokemon - Flask App{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-4">My Pokemon</h1>
+
+    {% if user_catched_pokemon %}
+    <table class="table mt-4">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>HP</th>
+                <th>Defense</th>
+                <th>Attack</th>
+                <th>Front Shiny</th>
+                <th>Abilities</th>
+                <th>Release</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for caught_pokemon in user_catched_pokemon %}
+            <tr>
+                <td>{{ caught_pokemon.pokemon.name }}</td>
+                <td>{{ caught_pokemon.pokemon.hp }}</td>
+                <td>{{ caught_pokemon.pokemon.defense }}</td>
+                <td>{{ caught_pokemon.pokemon.attack }}</td>
+                <td><img src="{{ caught_pokemon.pokemon.front_shiny }}" alt="{{ caught_pokemon.pokemon.name }} Shiny"></td>
+                <td>{{ caught_pokemon.pokemon.abilities }}</td>
+                <td>
+                    <form method="POST" action="{{ url_for('release_pokemon', pokemon_id=caught_pokemon.pokemon.id) }}">
+                        <button type="submit" class="btn btn-danger">Release</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p class="mt-4">You haven't caught any Pokemon yet.</p>
+    {% endif %}
+</div>
+{% endblock %}
